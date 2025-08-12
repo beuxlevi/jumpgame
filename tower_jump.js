@@ -35,9 +35,10 @@ window.addEventListener('keydown', e => {
 window.addEventListener('keyup', e => { keys[e.code] = false; });
 
 class Platform {
-  constructor(x, y) {
+  constructor(x, y, width = PLATFORM_WIDTH) {
     this.x = x;
     this.y = y;
+    this.width = width;
     this.passed = false;
   }
 }
@@ -71,8 +72,8 @@ class Player {
 
     let newGround = false;
     for (let p of platforms) {
-      if (this.vy <= 0 && this.y - this.vy > p.y && this.y <= p.y) {
-        if (this.x + this.width > p.x && this.x < p.x + PLATFORM_WIDTH) {
+      if (this.vy <= 0 && this.y - this.vy >= p.y && this.y <= p.y) {
+        if (this.x + this.width > p.x && this.x < p.x + p.width) {
           this.y = p.y;
           this.vy = 0;
           newGround = true;
@@ -107,7 +108,7 @@ let offsetMax;
 
 function resetGame() {
   player = new Player();
-  platforms = [new Platform(0, 0)];
+  platforms = [new Platform(0, 0, WIDTH)];
   lastPlatformX = 0;
   lastPlatformY = 0;
   cameraY = 0;
@@ -168,8 +169,8 @@ function draw() {
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
   ctx.fillStyle = '#cccccc';
   for (let p of platforms) {
-    const screenY = HEIGHT - (p.y - cameraY);
-    ctx.fillRect(p.x, screenY, PLATFORM_WIDTH, PLATFORM_HEIGHT);
+    const screenY = HEIGHT - ((p.y - cameraY) + PLATFORM_HEIGHT);
+    ctx.fillRect(p.x, screenY, p.width, PLATFORM_HEIGHT);
   }
   player.draw();
 }
