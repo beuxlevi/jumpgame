@@ -2,20 +2,12 @@
 A vertical scrolling jump game with auto-scroll and platform physics made with HTML, CSS, and JavaScript.
 # Tower Jump
 
-An endless vertical platform jumper implemented in Python using [Pygame](https://www.pygame.org/).
+An endless vertical platform jumper rendered on HTML5 Canvas and playable in the browser.
 
-## Setup
+## Run locally
 
-Install dependencies:
+Open `index.html` in a modern browser. Use the arrow keys or A/D to move and space to jump while the tower scrolls upward.
 
-```bash
-pip install -r requirements.txt
-```
+## GitHub Pages
 
-## Run
-
-```bash
-python tower_jump.py
-```
-
-The game opens in a 480×854 window. Use arrow keys or A/D to move and space to jump. Reach for the highest score while the tower scrolls upward. Once the autoscroll catches you, the run ends.
+Enable GitHub Pages for this repository (Settings → Pages → Deploy from main) and the game will be available at [https://beuxlevi.github.io/jumpgame/](https://beuxlevi.github.io/jumpgame/).
